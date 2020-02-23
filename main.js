@@ -1,5 +1,3 @@
-window.onload = main
-
 function rToX(rad, radius){
   return -Math.sin(Math.PI * 2 - rad) * radius
 }
@@ -8,13 +6,26 @@ function rToY(rad, radius){
   return -Math.cos(Math.PI * 2 - rad) * radius
 }
 
+function addDigit(num, d){
+  let s = num.toString()
+  while (s.length < d)
+    s = '0' + s
+  return s
+}
+
+function easeIn(i){
+  return i * i * i
+}
+
 function main(){
 
 // ALIAS
 const {
   Application,
   Graphics,
-  Container
+  Container,
+  Text,
+  TextStyle
 } = PIXI
 
 // INIT CANVAS
@@ -26,6 +37,11 @@ const DF_LINE = [1, 0xffffff, 1]
 const BOLD_LINE = [3, 0xffffff, 1]
 const BOLDER_LINE = [5, 0xffffff, 1]
 const UNIT_LONG = 10
+const DF_FONT = {
+  fontFamily : 'Baloo', 
+  fill : 0xffffff, 
+  align : 'center',
+}
 
 const app = new Application({ 
   width: WIDTH,
@@ -37,10 +53,24 @@ const clock = new Container()
 clock.position.set(WIDTH/2, HEIGHT/2)
 app.stage.addChild(clock)
 
-/* const clock_circle = new Graphics()
-clock_circle.lineStyle.apply(clock_circle, DF_LINE)
-.drawCircle(0, 0, RADIUS)
-clock.addChild(clock_circle)*/
+const date = new PIXI.Text(``, Object.assign({
+  fontSize: RADIUS/3, 
+}, DF_FONT))
+date.alpha = 0.2
+clock.addChild(date)
+
+const secs = []
+
+for (let i = 0; i < 60; i++){
+  let text = new Text(i + 1, Object.assign({
+    fontSize: UNIT_LONG * 1.5
+  }, DF_FONT))
+  text.anchor.set(.5, .5)
+  text.alpha = .5
+  text.position.set(rToX(Math.PI * 2 * i/60, RADIUS + UNIT_LONG * 2), rToY(Math.PI * 2 * i/60, RADIUS + UNIT_LONG * 2))
+  secs.push(text)
+  clock.addChild(text)
+}
 
 for (let i = 0 ; i < 12; i++){
   let hour_unit = new Graphics()
@@ -89,9 +119,41 @@ setInterval(() => {
 
   hour_tick.rotation = (h + m/60 + s/3600)/12 * Math.PI * 2
   min_tick.rotation = (m/60 + s/3600) * Math.PI * 2
-  sec_tick.rotation = (s/60 + ms/60000) * Math.PI * 2
+  sec_tick.rotation = (s/60 + easeIn(ms/1000)/60 ) * Math.PI * 2
+
+  date.text = `${now.getFullYear()}/${addDigit(now.getMonth() + 1, 2)}/${addDigit(now.getDate(), 2)}`
+  date.position.set(-date.width/2, -date.height/2)
+
+  for (let i = 0; i < 60; i++){
+    let text = secs[i]
+    text.style = new TextStyle(Object.assign({
+      fontSize: UNIT_LONG * 1.5
+    }, DF_FONT))
+    text.alpha = .5
+    // console.log(ms/1000)
+    if ((i + 1) % 60 === s && ms/1000 < .5){
+      text.alpha = 1
+      text.style = new TextStyle(Object.assign({
+        fontSize: UNIT_LONG * 2
+      }, DF_FONT))
+    }
+    text.position.set(rToX(Math.PI * 2 * (i - s + 1 - easeIn(ms/1000))/60, RADIUS + UNIT_LONG * 2), rToY(Math.PI * 2 * (i - s + 1 - easeIn(ms/1000))/60, RADIUS + UNIT_LONG * 2))
+  }
 }, 1000/60)
 
 document.body.appendChild(app.view)
 
+}
+
+window.onload = () => {
+  WebFont.load({
+    google: {
+      families: ['Baloo']
+    },
+    active(){
+      setTimeout(() => {
+        main()
+      }, 500)
+    }
+  })
 }
