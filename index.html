@@ -3,17 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anh Hao Clock</title>
+  <title>Dashboard</title>
 
-  <style>
-    body {
-      background-color: black;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
 </head>
 <body>
   <canvas id="clock"></canvas>
@@ -29,7 +23,7 @@
       const canvas = document.getElementById('clock');
       const ctx = canvas.getContext('2d');
 
-      const screensize = Math.min(window.innerWidth, window.innerHeight);
+      const screensize = 400;
       const size = screensize * 0.8;
       const radius = size/2;
       canvas.width = canvas.height = screensize;
