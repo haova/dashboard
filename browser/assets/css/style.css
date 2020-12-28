@@ -18,3 +18,25 @@ canvas {
   right: 0;
   width: 15%;
 }
+
+input {
+  background-color: rgba(0, 0, 0, .5);
+  line-height: 2em;
+  font-size: 1em;
+  font-family: inherit;
+  border: none;
+  padding: 0 .5em;
+  width: 100%;
+  display: block;
+  margin-bottom: .5em;
+  color: white;
+  outline: none;
+  border-radius: .3em;
+}
+
+.weather {
+  position: fixed;
+  top: 10%;
+  left: 5%;
+  width: 15%;
+}
