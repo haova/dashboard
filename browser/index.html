@@ -5,15 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="assets/css/reset.css">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/simple-line-icons.css">
 
 </head>
 <body>
   <canvas id="clock"></canvas>
-  <div class="weather">
+
+  <div class="weather-form" status="hidden">
+    <div class="error"></div>
     <input type="text" placeholder="weatherapi.com API KEY" id="weather-api-key">
     <input type="text" placeholder="City Name" id="weather-city-name">
+    <button>Save</button>
   </div>
+
+  <div class="weather" status="visible">
+    <div class="temp">0</div>
+    <div class="humi">0</div>
+  </div>
+
+  <script src="assets/js/clock.js"></script>
+  <script src="assets/js/weather.js"></script>
 </body>
 </html>
