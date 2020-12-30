@@ -14,8 +14,6 @@ function init(){
   const radius = size/2;
   canvas.width = canvas.height = screensize;
 
-  ctx.translate(screensize/2, screensize/2);
-
   ctx.font = radius * 0.15 + "px arial";
 
   function drawHand(ctx, pos, length, width) {
@@ -31,10 +29,9 @@ function init(){
   }
 
   function drawClock() {
-    ctx.beginPath();
-    ctx.arc(0, 0, radius, 0, 2 * Math.PI);
-    ctx.fillStyle = 'black';
-    ctx.fill();
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.translate(screensize/2, screensize/2);
 
     ctx.beginPath();
     ctx.arc(0, 0, radius * 0.05, 0, 2 * Math.PI);
