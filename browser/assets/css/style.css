@@ -21,8 +21,18 @@ body {
 canvas {
   position: fixed;
   top: 5em;
-  right: 5em;
-  width: 20em;
+  left: 50%;
+  width: 16em;
+  margin-left: -8em;
+}
+
+@media screen and (min-width: 768px) {
+  canvas {
+    right: 5em;
+    width: 20em;
+    left: auto;
+    margin-left: auto;
+  } 
 }
 
 /*** WEATHER ***/
@@ -76,12 +86,15 @@ canvas {
 
 .weather {
   position: fixed;
-  top: 7em;
-  left: 7em;
+  top: 1em;
+  left: 1em;
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - 2em);
 }
 
 .weather .temp {
-  font-size: 10em;
+  font-size: 2em;
 }
 
 .weather .temp:after {
@@ -95,12 +108,12 @@ canvas {
 
 .weather .temp:before {
   content: "\e01c";
-  padding-top: 1em;
+  padding-top: .15em;
   
 }
 
 .weather .humi {
-  font-size: 3em;
+  font-size: 2em;
 }
 
 .weather .humi:after {
@@ -114,7 +127,7 @@ canvas {
 
 .weather .humi:before {
   content: '\e03e';
-  padding-top: .4em;
+  padding-top: .15em;
 }
 
 .weather .temp:before, .weather .humi:before {
@@ -123,6 +136,30 @@ canvas {
   margin-right: 7pt;
   vertical-align: top;
   display: inline-block;
+}
+
+@media screen and (min-width: 768px) {
+  .weather {
+    top: 7em;
+    left: 7em;
+    display: unset;
+  }
+
+  .weather .temp {
+    font-size: 10em;
+  }
+
+  .weather .temp:before {
+    padding-top: 1em;
+  }
+
+  .weather .humi {
+    font-size: 3em;
+  }
+
+  .weather .humi:before {
+    padding-top: .4em;
+  }
 }
 
 /*** DOCK ***/
