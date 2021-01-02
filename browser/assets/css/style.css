@@ -189,3 +189,41 @@ canvas {
   height: 100%;
   object-fit: cover;
 }
+
+/*** SIDEBAR ***/
+
+label[for="op-sidebar"] {
+  position: fixed;
+  top: 5em;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  right: 0;
+  background-color: rgba(255, 255, 255, .1);
+  transition: all .3s;
+  cursor: pointer;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -280px;
+  width: 280px;
+  height: 100%;
+  background-color: #212121;
+  box-shadow: 0 0 .2em rgba(0, 0, 0, .5);
+  transition: all .3s;
+}
+
+#op-sidebar {
+  display: none;
+}
+
+#op-sidebar:checked~.sidebar {
+  right: 0;
+}
+
+#op-sidebar:checked~label[for="op-sidebar"] {
+  right: 280px;
+}
