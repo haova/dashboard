@@ -2,26 +2,22 @@ const showWeatherForm = (error = '') => {
   const weatherElm = document.querySelector('.weather-form');
   const errorElm = weatherElm.querySelector('.error');
 
+  const apiKeyInput = weatherElm.querySelector('#weather-api-key');
+  const cityNameInput = weatherElm.querySelector('#weather-city-name');
+
   errorElm.innerHTML = error;
 
-  if (weatherElm.getAttribute('status') !== 'hidden')
-    return
+  apiKeyInput.value = localStorage.getItem('weather-api-key') || '';
+  cityNameInput.value = localStorage.getItem('weather-city-name') || '';
 
-  weatherElm.setAttribute('status', 'visible');
-  weatherElm.querySelector('button').onclick = () => {
-    const apiKeyInput = weatherElm.querySelector('#weather-api-key');
-    const cityNameInput = weatherElm.querySelector('#weather-city-name');
+  if (!weatherElm.querySelector('button')){
+    weatherElm.querySelector('button').onclick = () => {
+      localStorage.setItem('weather-api-key', apiKeyInput.value);
+      localStorage.setItem('weather-city-name', cityNameInput.value);
 
-    localStorage.setItem('weather-api-key', apiKeyInput.value);
-    localStorage.setItem('weather-city-name', cityNameInput.value);
-
-    loadWeather();
+      loadWeather();
+    }
   }
-}
-
-const hideWeatherForm = () => {
-  const weatherElm = document.querySelector('.weather-form');
-  weatherElm.setAttribute('status', 'hidden');
 }
 
 const displayWeather = data => {
@@ -40,7 +36,6 @@ const loadWeather = async () => {
   const cityName = localStorage.getItem('weather-city-name');
 
   if (!apiKey && !cityName){
-    showWeatherForm();  
     return;
   }
 
@@ -53,11 +48,11 @@ const loadWeather = async () => {
   
   const data = await res.json();
 
-  hideWeatherForm();
   displayWeather(data.current);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  showWeatherForm();  
   loadWeather();
 
   setInterval(() => {

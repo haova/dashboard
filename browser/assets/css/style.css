@@ -51,14 +51,7 @@ canvas {
   border-radius: .3em;
 }
 
-.weather-form {
-  position: fixed;
-  top: 7em;
-  left: 7em;
-  width: 15%;
-}
-
-.weather[status="hidden"], .weather-form[status="hidden"] {
+.weather[status="hidden"] {
   display: none;
 }
 
@@ -214,6 +207,7 @@ label[for="op-sidebar"] {
   background-color: #212121;
   box-shadow: 0 0 .2em rgba(0, 0, 0, .5);
   transition: all .3s;
+  padding: 1em;
 }
 
 #op-sidebar {

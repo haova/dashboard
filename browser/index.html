@@ -17,13 +17,6 @@
 <body>
   <canvas id="clock"></canvas>
 
-  <div class="weather-form" status="hidden">
-    <div class="error"></div>
-    <input type="text" placeholder="weatherapi.com API KEY" id="weather-api-key">
-    <input type="text" placeholder="City Name" id="weather-city-name">
-    <button>Save</button>
-  </div>
-
   <div class="weather" status="visible">
     <div class="temp">0</div>
     <div class="humi">0</div>
@@ -43,7 +36,14 @@
   <label for="op-sidebar">
     <i class="icon icon-menu"></i>
   </label>
-  <div class="sidebar"></div>
+  <div class="sidebar">
+    <div class="weather-form">
+      <div class="error"></div>
+      <input type="text" placeholder="weatherapi.com API KEY" id="weather-api-key">
+      <input type="text" placeholder="City Name" id="weather-city-name">
+      <button>Save</button>
+    </div>
+  </div>
 
   <script src="assets/js/clock.js"></script>
   <script src="assets/js/weather.js"></script>
