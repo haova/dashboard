@@ -1,0 +1,26 @@
+{
+  "name": "dashboard",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && gh-pages -d dist"
+  },
+  "dependencies": {
+    "pinia": "^2.0.36",
+    "vue": "^3.3.2"
+  },
+  "devDependencies": {
+    "@rugo-vn/vue": "^1.1.0-beta.3",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "autoprefixer": "^10.4.14",
+    "axios": "^1.4.0",
+    "gh-pages": "^5.0.0",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.3.2",
+    "vite": "^4.3.5"
+  }
+}
