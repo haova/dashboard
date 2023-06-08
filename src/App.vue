@@ -6,11 +6,12 @@ const BASE_NPM = 'https://registry.npmjs.com';
 const TRACKING_SITE_URL =
   'https://4vyaynz5w5.execute-api.ap-southeast-1.amazonaws.com/default/sigmoid/sites';
 const NPM_PACKAGES = [
-  '@rugo-vn/vue',
-  '@rugo-vn/server',
   '@rugo-vn/db',
   '@rugo-vn/fx',
+  '@rugo-vn/live',
   '@rugo-vn/open',
+  '@rugo-vn/vue',
+  '@rugo-vn/server',
 ];
 
 const npmPackages = reactive(
